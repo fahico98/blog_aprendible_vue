@@ -11,10 +11,7 @@
 |
 */
 
-Route::get("/", "PagesController@spa");
-
-/*
 Route::get('/', function () {
     return view('welcome');
 });
-*/
+
