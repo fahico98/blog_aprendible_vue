@@ -5,6 +5,8 @@ import Home from "../views/Home";
 import About from "../views/About";
 import Archive from "../views/Archive";
 import Contact from "../views/Contact";
+import ShowPost from "../views/ShowPost";
+import Component404 from "../views/Component404";
 
 Vue.use(VueRouter);
 
@@ -16,18 +18,27 @@ const routes = [
    },
    {
       path: '/nosotros',
-      name: 'nosotros',
+      name: 'about',
       component: About
    },
    {
       path: '/archivo',
-      name: 'archivo',
+      name: 'archive',
       component: Archive
    },
    {
       path: '/contacto',
-      name: 'contacto',
+      name: 'contact',
       component: Contact
+   },
+   {
+      path: '/blog/:url',
+      name: 'show_post',
+      component: ShowPost
+   },
+   {
+      path: '*',
+      component: Component404
    }
 ];
 

@@ -4,8 +4,10 @@
    <v-app>
 
       <home-app-bar/>
-
-      <router-view></router-view>
+      
+      <v-container>
+         <router-view></router-view>
+      </v-container>
 
    </v-app>
    

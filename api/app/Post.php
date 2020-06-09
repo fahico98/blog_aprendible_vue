@@ -14,6 +14,12 @@ class Post extends Model{
 
    protected $dates = ['published_at'];
 
+   protected $appends = ["formated_published_at"];
+
+   public function getFormatedPublishedAtAttribute(){
+      return optional($this->published_at)->format("M d");
+   }
+
    protected static function boot(){
 
       parent::boot();

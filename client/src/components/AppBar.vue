@@ -8,10 +8,10 @@
          <v-toolbar-title class="chelsea-market">Blog Spot (co)</v-toolbar-title>
          
          <v-spacer></v-spacer>
-         <v-btn class="text-capitalize mr-2" v-on:click="goTo('/')" text>inicio</v-btn>
-         <v-btn class="text-capitalize mr-2" v-on:click="goTo('/nosotros')" text>nosotros</v-btn>
-         <v-btn class="text-capitalize mr-2" v-on:click="goTo('/archivo')" text>archivo</v-btn>
-         <v-btn class="text-capitalize mr-2" v-on:click="goTo('/contacto')" text>contacto</v-btn>
+         <v-btn class="text-capitalize mr-2" v-on:click="goTo('home')" text>inicio</v-btn>
+         <v-btn class="text-capitalize mr-2" v-on:click="goTo('about')" text>nosotros</v-btn>
+         <v-btn class="text-capitalize mr-2" v-on:click="goTo('archive')" text>archivo</v-btn>
+         <v-btn class="text-capitalize mr-2" v-on:click="goTo('contact')" text>contacto</v-btn>
          
          <!--
          <v-tabs right>
@@ -43,8 +43,8 @@
       }),
 
       methods: {
-         goTo(route){
-            this.$router.push(route);
+         goTo(routeName){
+            this.$router.push({name: routeName});
          }
       }
    }

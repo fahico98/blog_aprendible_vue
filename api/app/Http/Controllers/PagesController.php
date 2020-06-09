@@ -19,7 +19,7 @@ class PagesController extends Controller{
 
       $posts = $query->paginate();
 
-      return request()->wantsJson() ? $posts : "Nothing...!";
+      return request()->wantsJson() ? $posts : "404";
 
       //return view('pages.home', compact('posts'));
    }
