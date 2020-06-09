@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 

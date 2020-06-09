@@ -1,11 +1,15 @@
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import Home from "../views/Home";
 import About from "../views/About";
 import Archive from "../views/Archive";
 import Contact from "../views/Contact";
 import ShowPost from "../views/ShowPost";
+import ShowCategoryPosts from "../views/ShowCategoryPosts";
+// import ShowTagPosts from "../views/ShowTagPosts";
+
 import Component404 from "../views/Component404";
 
 Vue.use(VueRouter);
@@ -37,6 +41,16 @@ const routes = [
       component: ShowPost
    },
    {
+      path: '/categorias/:category',
+      name: 'show_category_posts',
+      component: ShowCategoryPosts
+   },/*
+   {
+      path: '/etiquestas/:etiqueta',
+      name: 'show_tag_posts',
+      component: ShowTagPosts
+   },
+   */{
       path: '*',
       component: Component404
    }

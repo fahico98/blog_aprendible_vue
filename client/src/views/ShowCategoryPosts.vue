@@ -1,14 +1,10 @@
 
 <template>
-
+   
    <div>
-      
+
       <v-card v-for="post in posts" :key="post.id" class="my-5" outlined>
          <div class="my-5 mx-8">
-
-            <v-chip color="blue darken-4" @click="goToCategory(post.category.url)" link dark>
-               {{ post.category.name }}
-            </v-chip>
 
             <p class="headline font-weight-medium ma-0 pa-0 mt-5">{{ post.title }}</p>
             <p class="ma-0 pa-0 body-2 font-weight-normal">
@@ -32,43 +28,28 @@
 
          </div>
       </v-card>
-
+      
    </div>
-   
+
 </template>
 
 <script>
 
-   // import format from 'date-fns/format';
-
    export default {
-      
-      name: "home-component",
-      
+
       mounted(){
-         this.$http.get("http://homestead.test/api/posts")
-            .then((response) => {
+         this.$http.get("http://homestead.test/api/category/" + this.$route.params.category)
+            .then(response => {
                this.posts = response.data.data;
             })
-            .catch((error) => {
-               console.log(error);
+            .catch(error => {
+               console.log(error.response.data);
             });
       },
 
       data(){
          return {
-            posts: [],
-         }
-      },
-
-      methods: {
-         /*
-         parsePublishedAt(strDate){
-            return format(new Date(strDate), 'MMM dd');
-         }
-         */
-         goToCategory(url){
-            this.$router.push({name: "show_category_posts", params: {category: url}});
+            posts: []
          }
       }
    }

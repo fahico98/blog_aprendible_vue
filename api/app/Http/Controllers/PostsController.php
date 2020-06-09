@@ -10,7 +10,11 @@ class PostsController extends Controller{
    public function show(Post $post){
 
       if($post->isPublished() || auth()->check()){
-         return (request()->wantsJson()) ? $post : "404";
+         if(request()->wantsJson()){
+            return $post->load("owner", "category", "tags", "photos");
+         }else{
+            abort(404);
+         }
       }
    }
 
