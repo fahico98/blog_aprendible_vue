@@ -8,7 +8,7 @@ import Archive from "../views/Archive";
 import Contact from "../views/Contact";
 import ShowPost from "../views/ShowPost";
 import ShowCategoryPosts from "../views/ShowCategoryPosts";
-// import ShowTagPosts from "../views/ShowTagPosts";
+import ShowTagPosts from "../views/ShowTagPosts";
 
 import Component404 from "../views/Component404";
 
@@ -44,13 +44,13 @@ const routes = [
       path: '/categorias/:category',
       name: 'show_category_posts',
       component: ShowCategoryPosts
-   },/*
+   },
    {
-      path: '/etiquestas/:etiqueta',
+      path: '/etiquestas/:tag',
       name: 'show_tag_posts',
       component: ShowTagPosts
    },
-   */{
+   {
       path: '*',
       component: Component404
    }

@@ -1,8 +1,8 @@
 
 <template>
-
+   
    <div>
-      
+
       <v-card v-for="post in posts" :key="post.id" class="my-5" outlined>
          <div class="my-5 mx-8">
 
@@ -34,46 +34,39 @@
 
          </div>
       </v-card>
-
+      
    </div>
-   
+
 </template>
 
 <script>
 
-   // import format from 'date-fns/format';
-
    export default {
-      
-      name: "home-component",
-      
+
       mounted(){
-         this.$http.get("http://homestead.test/api/posts")
-            .then((response) => {
+         this.$http.get("http://homestead.test/api/tag/" + this.$route.params.tag)
+            .then(response => {
                this.posts = response.data.data;
             })
-            .catch((error) => {
-               console.log(error);
+            .catch(error => {
+               console.log(error.response.data);
             });
       },
 
       data(){
          return {
-            posts: [],
+            posts: []
          }
       },
 
       methods: {
-         /*
-         parsePublishedAt(strDate){
-            return format(new Date(strDate), 'MMM dd');
-         }
-         */
          goToCategory(url){
             this.$router.push({name: "show_category_posts", params: {category: url}});
          },
          goToTag(url){
-            this.$router.push({name: "show_tag_posts", params: {tag: url}});
+            if(url != this.$route.params.tag){
+               this.$router.push({name: "show_tag_posts", params: {tag: url}});
+            }
          }
       }
    }

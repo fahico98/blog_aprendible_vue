@@ -13,9 +13,9 @@
 
             <p class="ma-0 pa-0 mt-5" v-html="post.excerpt"></p>
 
-            <div class="mt-3">
-               <v-chip v-for="tag in post.tags" :key="tag.id" color="blue lighten-4" light small>#{{ tag.name }}</v-chip>
-            </div>
+            <v-chip v-for="tag in post.tags" :key="tag.id" @click="goToTag(tag.url)" color="blue lighten-4" link light small>
+               #{{ tag.name }}
+            </v-chip>
 
             <div class="mt-3">
                <!--
@@ -50,6 +50,12 @@
       data(){
          return {
             posts: []
+         }
+      },
+
+      methods: {
+         goToTag(url){
+            this.$router.push({name: "show_tag_posts", params: {tag: url}});
          }
       }
    }
