@@ -38,17 +38,20 @@ const routes = [
    {
       path: '/blog/:url',
       name: 'show_post',
-      component: ShowPost
+      component: ShowPost,
+      props: true
    },
    {
       path: '/categorias/:category',
       name: 'show_category_posts',
-      component: ShowCategoryPosts
+      component: ShowCategoryPosts,
+      props: true
    },
    {
       path: '/etiquestas/:tag',
       name: 'show_tag_posts',
-      component: ShowTagPosts
+      component: ShowTagPosts,
+      props: true
    },
    {
       path: '*',

@@ -6,18 +6,19 @@
       <v-card v-for="post in posts" :key="post.id" class="my-5" outlined>
          <div class="my-5 mx-8">
 
+            <category-chip :category="post.category"></category-chip>
+
             <p class="headline font-weight-medium ma-0 pa-0 mt-5">{{ post.title }}</p>
+
             <p class="ma-0 pa-0 body-2 font-weight-normal">
                {{ post.formated_published_at }}&nbsp;-&nbsp;{{ post.owner.name }}
             </p>
 
             <p class="ma-0 pa-0 mt-5" v-html="post.excerpt"></p>
 
-            <v-chip v-for="tag in post.tags" :key="tag.id" @click="goToTag(tag.url)" color="blue lighten-4" link light small>
-               #{{ tag.name }}
-            </v-chip>
+            <tags-chips-list class="mt-4" :tags="post.tags"></tags-chips-list>
 
-            <div class="mt-3">
+            <div class="mt-4">
                <!--
                <v-btn :to="`/post/${post.url}`" color="blue darken-4" class="text-capitalize" text dark depressed>
                   Leer mas</v-btn>
@@ -35,10 +36,20 @@
 
 <script>
 
+   import CategoryChip from "../components/CategoryChip";
+   import TagsChipsList from "../components/TagsChipsList";
+
    export default {
 
+      components: {
+         CategoryChip,
+         TagsChipsList
+      },
+
+      props: ["category"],
+
       mounted(){
-         this.$http.get("http://homestead.test/api/category/" + this.$route.params.category)
+         this.$http.get("http://homestead.test/api/category/" + this.category)
             .then(response => {
                this.posts = response.data.data;
             })
@@ -50,12 +61,6 @@
       data(){
          return {
             posts: []
-         }
-      },
-
-      methods: {
-         goToTag(url){
-            this.$router.push({name: "show_tag_posts", params: {tag: url}});
          }
       }
    }

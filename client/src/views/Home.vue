@@ -6,9 +6,7 @@
       <v-card v-for="post in posts" :key="post.id" class="my-5" outlined>
          <div class="my-5 mx-8">
 
-            <v-chip color="blue darken-4" @click="goToCategory(post.category.url)" link dark>
-               {{ post.category.name }}
-            </v-chip>
+            <category-chip :category="post.category"></category-chip>
 
             <p class="headline font-weight-medium ma-0 pa-0 mt-5">{{ post.title }}</p>
             <p class="ma-0 pa-0 body-2 font-weight-normal">
@@ -17,13 +15,9 @@
 
             <p class="ma-0 pa-0 mt-5" v-html="post.excerpt"></p>
 
-            <div class="mt-3">
-               <v-chip v-for="tag in post.tags" :key="tag.id" @click="goToTag(tag.url)" color="blue lighten-4" link light small>
-                  #{{ tag.name }}
-               </v-chip>
-            </div>
+            <tags-chips-list class="mt-4" :tags="post.tags"></tags-chips-list>
 
-            <div class="mt-3">
+            <div class="mt-4">
                <!--
                <v-btn :to="`/post/${post.url}`" color="blue darken-4" class="text-capitalize" text dark depressed>
                   Leer mas</v-btn>
@@ -43,10 +37,18 @@
 
    // import format from 'date-fns/format';
 
+   import CategoryChip from "../components/CategoryChip";
+   import TagsChipsList from "../components/TagsChipsList";
+
    export default {
       
       name: "home-component",
-      
+
+      components: {
+         CategoryChip,
+         TagsChipsList
+      },
+
       mounted(){
          this.$http.get("http://homestead.test/api/posts")
             .then((response) => {
@@ -69,12 +71,6 @@
             return format(new Date(strDate), 'MMM dd');
          }
          */
-         goToCategory(url){
-            this.$router.push({name: "show_category_posts", params: {category: url}});
-         },
-         goToTag(url){
-            this.$router.push({name: "show_tag_posts", params: {tag: url}});
-         }
       }
    }
 
